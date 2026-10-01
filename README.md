@@ -1,6 +1,6 @@
 # 📚 PorBhai
 
-### Your AI-powered learning companion for students
+### AI-powered learning companion for students
 
 PorBhai is an educational platform designed to help students from **Class 1 to Class 12** learn, practice, and understand their study materials in a simple and interactive way.
 
