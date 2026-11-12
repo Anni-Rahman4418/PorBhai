@@ -128,3 +128,6 @@ body { overflow-x: hidden; }
   .navbar li a { padding: .5rem .55rem; font-size: .95rem; }
   .welcome h1 { font-size: 1.9rem; }
 }
+
+/* keep section headings clear of the sticky navbar when jumping to #classes */
+.block { scroll-margin-top: 4.5rem; }
