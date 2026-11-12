@@ -170,6 +170,33 @@ if (listBody) {
     });
   }
 
+  // Pressing Enter / Search with a name that nobody has enrolled under opens a themed popup.
+  const searchForm = document.getElementById("searchForm");
+  const modal = document.getElementById("notFoundModal");
+  if (searchForm && modal) {
+    const nfText = document.getElementById("nfText");
+    const closeBtn = document.getElementById("nfClose");
+    function closeModal() {
+      modal.hidden = true;
+      searchBox.focus();
+      searchBox.select();
+    }
+    searchForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const q = searchBox.value.trim().toLowerCase();
+      if (!q) return;
+      const found = people.some(function (p) { return String(p.name).toLowerCase().indexOf(q) >= 0; });
+      if (!found) {
+        nfText.textContent = "“" + searchBox.value.trim() + "” is not enrolled in PorBhai yet.";
+        modal.hidden = false;
+        closeBtn.focus();
+      }
+    });
+    closeBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) closeModal(); });
+  }
+
   if (searchBox) searchBox.addEventListener("input", renderList);
   if (monthSel) monthSel.addEventListener("change", renderList);
   emptyMsg.hidden = true;

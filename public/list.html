@@ -15,12 +15,7 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="form.html">Form</a></li>
-                    <li class="dropdown"><a href="list.html">People</a>
-                        <ul class="submenu">
-                            <li><a href="list.html">List</a></li>
-                            <li><a href="search.html">Search</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="list.html">People</a></li>
                     <li class="dropdown"><a href="Class.html">Class &#9662;</a>
                         <ul class="submenu">
                             <li><a href="Class_1.html">Class 1</a></li>
@@ -43,7 +38,14 @@
     <main>
         <h1 class="page-title">Registered People</h1>
         <section class="card">
+            <form id="searchForm" class="search-bar" role="search" autocomplete="off">
+                <label for="searchBox" class="sr-only">Search by name</label>
+                <input type="search" id="searchBox" placeholder="Search a person by name&hellip;">
+                <button type="submit" class="search-btn">Search</button>
+                <span id="resultCount" class="result-count" aria-live="polite"></span>
+            </form>
             <p id="emptyMsg" hidden>No one has filled the form yet. <a href="form.html">Fill the form</a> to appear here.</p>
+            <p id="noMatch" class="no-match" hidden>No one with that name is enrolled yet.</p>
             <div class="table-wrap">
                 <table id="peopleTable">
                     <thead>
@@ -54,6 +56,18 @@
             </div>
         </section>
     </main>
+
+    <div id="notFoundModal" class="modal" hidden>
+        <div class="modal-box" role="alertdialog" aria-modal="true" aria-labelledby="nfTitle" aria-describedby="nfText">
+            <div class="modal-icon" aria-hidden="true">?</div>
+            <h2 id="nfTitle">Not enrolled</h2>
+            <p id="nfText"></p>
+            <div class="modal-actions">
+                <a class="btn-link" href="form.html">Enroll now</a>
+                <button type="button" class="btn-ghost" id="nfClose">Try again</button>
+            </div>
+        </div>
+    </div>
 
     <footer>&copy; PorBhai</footer>
     <script src="people-client.js"></script>
