@@ -100,7 +100,7 @@
       }).promise;
 
       updatePageControls();
-      setStatus("Page " + pageNumber + " is ready. Click a word to ask about it.", false);
+      setStatus("Page " + pageNumber + " is ready. Click a word to see its meaning.", false);
     } catch (error) {
       setStatus("Could not display this page. Try another PDF or page.", true);
       console.error("PDF page rendering failed:", error);
@@ -139,7 +139,7 @@
     }
   }
 
-  function selectedWordAtPoint(event) {
+  function selectedWordAtPoint(event, container) {
     let range = null;
     if (document.caretRangeFromPoint) {
       range = document.caretRangeFromPoint(event.clientX, event.clientY);
@@ -150,7 +150,7 @@
         range.setStart(position.offsetNode, position.offset);
       }
     }
-    if (!range || !textLayer.contains(range.startContainer) || range.startContainer.nodeType !== Node.TEXT_NODE) return "";
+    if (!range || !container.contains(range.startContainer) || range.startContainer.nodeType !== Node.TEXT_NODE) return "";
 
     const text = range.startContainer.textContent;
     const offset = range.startOffset;
@@ -161,11 +161,72 @@
     return "";
   }
 
+
+  const wordPopup = document.createElement("div");
+  wordPopup.className = "word-popup";
+  wordPopup.hidden = true;
+  wordPopup.setAttribute("role", "dialog");
+  wordPopup.innerHTML = '<button type="button" class="word-popup-close" aria-label="Close">&times;</button>' +
+    '<strong class="word-popup-title"></strong><p class="word-popup-body"></p>';
+  document.body.appendChild(wordPopup);
+  const popupTitle = wordPopup.querySelector(".word-popup-title");
+  const popupBody = wordPopup.querySelector(".word-popup-body");
+  let popupToken = 0;
+
+  function hideWordPopup() {
+    popupToken++;
+    wordPopup.hidden = true;
+  }
+
+  async function showWordPopup(word, context, x, y) {
+    const token = ++popupToken;
+    popupTitle.textContent = word;
+    popupBody.textContent = "Finding the meaning... / অর্থ খোঁজা হচ্ছে...";
+    wordPopup.hidden = false;
+    const width = wordPopup.offsetWidth;
+    wordPopup.style.left = Math.max(8, Math.min(x - width / 2, window.innerWidth - width - 8)) + "px";
+    const top = y + 18;
+    wordPopup.style.top = (top + wordPopup.offsetHeight > window.innerHeight ? Math.max(8, y - wordPopup.offsetHeight - 18) : top) + "px";
+    try {
+      const response = await fetch("/api/tutor", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          mode: "word",
+          word: word,
+          question: "Explain the word \"" + word + "\" in simple words.",
+          context: context.slice(0, 2000)
+        })
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Could not find the meaning.");
+      if (token === popupToken) popupBody.textContent = result.answer;
+    } catch (error) {
+      if (token === popupToken) popupBody.textContent = error.message || "Could not find the meaning. Please try again.";
+    }
+  }
+
+  chatMessages.addEventListener("click", function (event) {
+    const bubble = event.target.closest(".assistant-message");
+    if (!bubble || bubble.dataset.loading === "true") return;
+    const word = window.getSelection().toString().trim().slice(0, 60) || selectedWordAtPoint(event, bubble);
+    if (!word || word.length > 60) return;
+    showWordPopup(word, bubble.textContent, event.clientX, event.clientY);
+  });
+  wordPopup.querySelector(".word-popup-close").addEventListener("click", hideWordPopup);
+  document.addEventListener("click", function (event) {
+    if (!wordPopup.hidden && !wordPopup.contains(event.target) && !chatMessages.contains(event.target) && !textLayer.contains(event.target)) hideWordPopup();
+  });
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") hideWordPopup();
+  });
+
   async function askTutor(question, mode, word) {
     if (requestInProgress) return;
     requestInProgress = true;
     askButton.disabled = true;
     const thinking = addMessage("Thinking...", "assistant");
+    thinking.dataset.loading = "true";
     try {
       const response = await fetch("/api/tutor", {
         method: "POST",
@@ -187,6 +248,7 @@
     } catch (error) {
       thinking.querySelector("p").textContent = error.message || "Could not reach the AI tutor. Please try again.";
     } finally {
+      thinking.dataset.loading = "false";
       requestInProgress = false;
       askButton.disabled = false;
       chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -209,11 +271,11 @@
   });
   textLayer.addEventListener("click", function (event) {
     const selection = window.getSelection().toString().trim();
-    const word = selection || selectedWordAtPoint(event);
-    if (!word) return;
-    const question = "Explain the word \"" + word + "\" in simple language, using its meaning in this PDF page.";
-    chatInput.value = question;
-    askTutor(question, "word", word);
+    const word = selection || selectedWordAtPoint(event, textLayer);
+    if (!word || word.length > 60) return;
+    const index = pageText.toLowerCase().indexOf(word.toLowerCase());
+    const context = index < 0 ? pageText.slice(0, 600) : pageText.slice(Math.max(0, index - 300), index + word.length + 300);
+    showWordPopup(word, context, event.clientX, event.clientY);
   });
   chatForm.addEventListener("submit", function (event) {
     event.preventDefault();

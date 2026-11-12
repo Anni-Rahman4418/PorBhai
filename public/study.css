@@ -60,3 +60,9 @@
     .upload-panel { min-height: 25rem; padding: 1.25rem; }
     .pdf-stage { padding: .5rem; }
 }
+
+.assistant-message p { cursor: pointer; }
+.word-popup { position: fixed; z-index: 1000; width: min(20rem, calc(100vw - 1rem)); max-height: 60vh; overflow-y: auto; padding: .8rem 2rem .8rem .9rem; border: 1px solid #c9d7ee; border-radius: .75rem; background: #fff; color: #1d2a44; box-shadow: 0 8px 28px rgba(20, 40, 90, .22); font-size: .88rem; line-height: 1.5; }
+.word-popup-title { display: block; margin-bottom: .3rem; color: #2457c5; font-size: 1rem; }
+.word-popup-body { margin: 0; white-space: pre-wrap; }
+.word-popup-close { position: absolute; top: .3rem; right: .4rem; border: 0; background: none; font-size: 1.3rem; line-height: 1; cursor: pointer; color: #5a6a88; }
