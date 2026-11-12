@@ -286,27 +286,35 @@
     askTutor(question, "chat", "");
   });
 
-  const fileUrl = new URLSearchParams(window.location.search).get("file");
-  if (fileUrl) {
-    const pdfUrl = new URL(fileUrl, window.location.href);
-    if (pdfUrl.origin !== window.location.origin || !pdfUrl.pathname.toLowerCase().endsWith(".pdf")) {
+  async function openLinkedPdf(fileUrl) {
+    let pdfUrl;
+    try { pdfUrl = new URL(fileUrl, window.location.href); } catch (error) { pdfUrl = null; }
+    if (!pdfUrl || pdfUrl.origin !== window.location.origin || !pdfUrl.pathname.toLowerCase().endsWith(".pdf")) {
       setStatus("The PDF link must point to a PDF on this website.", true);
-    } else {
-      setStatus("Loading textbook PDF...", false);
-      window.pdfjsLib.getDocument(pdfUrl.href).promise.then(function (pdf) {
-        documentHandle = pdf;
-        fileName.textContent = decodeURIComponent(pdfUrl.pathname.split("/").pop());
-        uploadPanel.hidden = true;
-        readerToolbar.hidden = false;
-        pdfStage.hidden = false;
-        readerHint.hidden = false;
-        chatMessages.replaceChildren();
-        addMessage("Your textbook is ready. Click a word or ask me something about the current page.", "assistant");
-        renderPage(1);
-      }).catch(function (error) {
-        setStatus("Could not load this textbook PDF. You can choose a PDF from your device instead.", true);
-        console.error("Linked PDF could not be opened:", error);
-      });
+      return;
+    }
+    setStatus("Loading textbook PDF...", false);
+    try {
+      const pdf = await window.pdfjsLib.getDocument(pdfUrl.href).promise;
+      if (documentHandle) await documentHandle.destroy();
+      documentHandle = pdf;
+      currentPage = 1;
+      conversation = [];
+      fileName.textContent = decodeURIComponent(pdfUrl.pathname.split("/").pop());
+      uploadPanel.hidden = true;
+      readerToolbar.hidden = false;
+      pdfStage.hidden = false;
+      readerHint.hidden = false;
+      chatMessages.replaceChildren();
+      addMessage("Your textbook is ready. Click a word to see its meaning, or ask me something about the current page.", "assistant");
+      await renderPage(1);
+    } catch (error) {
+      setStatus("Could not load this textbook PDF. You can choose a PDF from your device instead.", true);
+      console.error("Linked PDF could not be opened:", error);
     }
   }
+  window.PorBhaiStudy = { openUrl: openLinkedPdf };
+
+  const fileUrl = new URLSearchParams(window.location.search).get("file");
+  if (fileUrl) openLinkedPdf(fileUrl);
 })();

@@ -86,6 +86,9 @@ if (signupForm) {
     users.push({ name: name, email: email, salt: h.salt, hash: h.hash });
     try { setUsers(users); }
     catch (err) { return show("Could not save the account in this browser.", "fullName"); }
+    // Add the new member to the shared People list (the password is never sent).
+    try { await window.PorBhaiPeople.register({ name: name, email: email }); }
+    catch (err) { console.error("Could not add to the People list:", err); }
     window.location.href = "login.html?registered=1";
   });
 }

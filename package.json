@@ -1,0 +1,25 @@
+{
+  "name": "porbhai",
+  "version": "1.0.0",
+  "description": "PorBhai is an educational platform designed to help students from **Class 1 to Class 12** learn, practice, and understand their study materials in a simple and interactive way.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anni-Rahman4418/PorBhai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Anni-Rahman4418/PorBhai/issues"
+  },
+  "homepage": "https://github.com/Anni-Rahman4418/PorBhai#readme",
+  "dependencies": {
+    "@vercel/blob": "^2.9.0"
+  }
+}
