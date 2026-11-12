@@ -209,3 +209,31 @@ tbody tr:hover td { background: #f6f9ff; }
 .btn-ghost:hover { background: #e8eefc; }
 @keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes modalPop { from { opacity: 0; transform: translateY(14px) scale(.96); } to { opacity: 1; transform: none; } }
+
+/* ---------- Responsive (all pages) ---------- */
+.navbar .dropdown.open > .submenu { display: grid; }
+img { max-width: 100%; }
+@media (hover: none) { .navbar li a:hover { background: transparent; color: #dbe5ff; } .navbar li a.active:hover { background: #fff; color: var(--brand-dark); } }
+
+@media (max-width: 52rem) {
+  .navbar .submenu { z-index: 20; }
+}
+@media (max-width: 40rem) {
+  body { font-size: 1rem; }
+  .navbar .inner { justify-content: center; padding: .4rem 1rem; }
+  .navbar ul { justify-content: center; }
+  .navbar li a { padding: .6rem .8rem; }
+  .navbar .submenu { grid-template-columns: repeat(2, 1fr); margin-top: .25rem; border-radius: .6rem; box-shadow: none; }
+  main { padding: 1.25rem 1rem 2rem; }
+  .card { padding: 1.1rem; border-radius: .6rem; }
+  th, td { padding: .55rem .6rem; }
+  tbody th { width: auto; }
+  .actions { flex-wrap: wrap; }
+  .search-btn { flex: 1 1 100%; }
+  .result-count { margin-left: 0; }
+  .btn-link, .btn-del { margin-bottom: .3rem; }
+}
+@media (max-width: 22rem) {
+  .navbar li a { padding: .5rem .55rem; font-size: .95rem; }
+  .navbar .submenu { grid-template-columns: 1fr; }
+}
