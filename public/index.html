@@ -42,120 +42,86 @@
         </div>
     </header>
 
-    <main>
-    <section class="hero">
-        <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
-        <canvas id="particles" aria-hidden="true"></canvas>
-        <div class="hero-inner">
-            <div class="hero-art">
-                <div class="photo-stage" id="photoStage">
-                    <img src="Books.jpg" alt="Stack of study books">
-                    <span class="chip c1">&#128218; Organised</span>
-                    <span class="chip c2">&#9889; Fast to find</span>
-                    <span class="chip c3">&#127919; Exam ready</span>
-                </div>
-            </div>
-            <div>
-                <span class="eyebrow">&#127891; Learning portal for Class 1&ndash;12</span>
-                <h1>Your exams are coming.<br>Meet <span class="grad">PorBhai</span>.</h1>
-                <p class="typed-line"><span id="typed"></span><span class="caret"></span></p>
-                <p class="lead">One clear place for the study materials you need &mdash; organised class by class, so you spend your time learning instead of searching.</p>
-                <div class="cta-row">
-                    <a class="btn btn-primary" href="#classes">Choose your class &rarr;</a>
-                    <a class="btn btn-ghost" href="#why">Why PorBhai?</a>
-                </div>
-            </div>
+<main>
+    <div class="photo fade-in">
+        <img src="Books.jpg" alt="A stack of books">
+    </div>
+
+    <section class="welcome wrap">
+        <p class="kicker fade">For students from Class 1 to Class 12</p>
+        <h1 class="fade" style="--d:.08s">Welcome to PorBhai</h1>
+        <p class="intro fade" style="--d:.16s">One place to find the study material you need. Pick your class from the menu and start reading. No more searching through websites, books and messages.</p>
+        <div class="buttons fade" style="--d:.24s">
+            <a class="btn solid" href="#classes">Choose your class</a>
+            <a class="btn line" href="#about">How it helps</a>
         </div>
-        <div class="hero-wave"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,70 480,0 720,30 C960,60 1200,10 1440,35 L1440,60 L0,60 Z" fill="#f1f5fb"/></svg></div>
     </section>
 
     <div class="wrap">
-        <div class="stats">
-            <div class="stat reveal"><div class="num" data-count="12">0</div><div class="lbl">Classes covered</div></div>
-            <div class="stat reveal" style="--d:.1s"><div class="num" data-count="10">0</div><div class="lbl">Class study pages</div></div>
-            <div class="stat reveal" style="--d:.2s"><div class="num" data-count="1">0</div><div class="lbl">Place for everything</div></div>
-        </div>
-
-        <section class="section" id="classes">
-            <div class="section-head reveal">
-                <h2>Pick your class, start studying</h2>
-                <p>Every class has its own page, so you only see the material meant for you.</p>
-            </div>
-            <div class="class-grid">
-                <a class="class-card g0 reveal" style="--d:0.00s" href="Class_1.html"><small>Class</small><strong>1</strong><span class="go">&rarr;</span></a>
-                <a class="class-card g1 reveal" style="--d:0.06s" href="Class_2.html"><small>Class</small><strong>2</strong><span class="go">&rarr;</span></a>
-                <a class="class-card g2 reveal" style="--d:0.12s" href="Class_3.html"><small>Class</small><strong>3</strong><span class="go">&rarr;</span></a>
-                <a class="class-card g3 reveal" style="--d:0.18s" href="Class_4.html"><small>Class</small><strong>4</strong><span class="go">&rarr;</span></a>
-                <a class="class-card g0 reveal" style="--d:0.24s" href="Class_5.html"><small>Class</small><strong>5</strong><span class="go">&rarr;</span></a>
-                <a class="class-card g1 reveal" style="--d:0.00s" href="Class_6.html"><small>Class</small><strong>6</strong><span class="go">&rarr;</span></a>
-                <a class="class-card g2 reveal" style="--d:0.06s" href="Class_7.html"><small>Class</small><strong>7</strong><span class="go">&rarr;</span></a>
-                <a class="class-card g3 reveal" style="--d:0.12s" href="Class_8.html"><small>Class</small><strong>8</strong><span class="go">&rarr;</span></a>
-                <a class="class-card g0 reveal" style="--d:0.18s" href="Class_9.html"><small>Classes</small><strong>9 – 10</strong><span class="go">&rarr;</span></a>
-                <a class="class-card g1 reveal" style="--d:0.24s" href="Class_11.html"><small>Classes</small><strong>11 – 12</strong><span class="go">&rarr;</span></a>
+        <section id="classes" class="block">
+            <h2 class="fade">Find your class</h2>
+            <p class="sub fade">Each class has its own page, so you only see what is meant for you.</p>
+            <div class="tiles">
+                <a class="tile fade" style="--d:0s" href="Class_1.html"><span>Class</span><strong>1</strong></a>
+                <a class="tile fade" style="--d:.05s" href="Class_2.html"><span>Class</span><strong>2</strong></a>
+                <a class="tile fade" style="--d:.1s" href="Class_3.html"><span>Class</span><strong>3</strong></a>
+                <a class="tile fade" style="--d:.15s" href="Class_4.html"><span>Class</span><strong>4</strong></a>
+                <a class="tile fade" style="--d:.2s" href="Class_5.html"><span>Class</span><strong>5</strong></a>
+                <a class="tile fade" style="--d:0s" href="Class_6.html"><span>Class</span><strong>6</strong></a>
+                <a class="tile fade" style="--d:.05s" href="Class_7.html"><span>Class</span><strong>7</strong></a>
+                <a class="tile fade" style="--d:.1s" href="Class_8.html"><span>Class</span><strong>8</strong></a>
+                <a class="tile fade" style="--d:.15s" href="Class_9.html"><span>Class</span><strong>9 &ndash; 10</strong></a>
+                <a class="tile fade" style="--d:.2s" href="Class_11.html"><span>Class</span><strong>11 &ndash; 12</strong></a>
             </div>
         </section>
 
-        <section class="section" id="why">
-            <div class="section-head reveal">
-                <h2>Why students love it</h2>
-                <p>Studying well begins with having the right material at the right time.</p>
+        <section id="about" class="block">
+            <h2 class="fade">Why PorBhai</h2>
+            <div class="points">
+                <div class="fade"><h3>Everything by class</h3><p>Materials are kept class by class, so a student always knows where to look.</p></div>
+                <div class="fade" style="--d:.08s"><h3>Less time searching</h3><p>Many students lose hours just finding what to read. Here you open a page and begin.</p></div>
+                <div class="fade" style="--d:.16s"><h3>Built for everyone</h3><p>Not every student has books or guidance at home. A clear website helps more of them keep up.</p></div>
             </div>
-            <div class="features">
-                <div class="feature reveal"><div class="ico">&#128194;</div><h3>Organised by class</h3><p>No more scattered websites, books and messages. Everything is sorted class by class.</p></div>
-                <div class="feature reveal" style="--d:.1s"><div class="ico">&#9201;&#65039;</div><h3>Save valuable hours</h3><p>Open a page and know exactly what to read. Spend energy on learning, not searching.</p></div>
-                <div class="feature reveal" style="--d:.2s"><div class="ico">&#129309;</div><h3>Fair for everyone</h3><p>Not every student has books or guidance at home. A clear website helps more students keep up.</p></div>
-                <div class="feature reveal" style="--d:.3s"><div class="ico">&#127793;</div><h3>Keeps growing</h3><p>New materials are added over time, because learning never stops &mdash; and neither should the resources.</p></div>
-            </div>
+            <p class="note fade">New materials are added over time, because learning never stops.</p>
         </section>
 
-        <section class="section">
-            <div class="section-head reveal">
-                <h2>Sound familiar?</h2>
-            </div>
-            <div class="story reveal">
-                <div class="vid"><video controls autoplay muted loop playsinline><source src="study_1.mp4" type="video/mp4"></video></div>
-                <div class="panel">
-                    <h3>&#128553; Frustrated with your study life?</h3>
-                    <p>Exams coming closer while your brain is getting further away? &#128218;&#128128;</p>
+        <section class="block">
+            <h2 class="fade">Sound familiar?</h2>
+            <div class="story fade">
+                <video controls autoplay muted loop playsinline><source src="study_1.mp4" type="video/mp4"></video>
+                <div>
+                    <h3>Frustrated with your study life?</h3>
+                    <p>Exams are getting closer, and it feels like your brain is getting further away.</p>
                 </div>
             </div>
-            <div class="story flip reveal" style="margin-top:1.5rem">
-                <div class="vid"><video controls autoplay muted loop playsinline><source src="Study_2.mp4" type="video/mp4"></video></div>
-                <div class="panel">
-                    <h3>Don&rsquo;t know what or where to start?</h3>
-                    <p>Bumping your head against the wall over what to study and how to study? From confusing topics to exam preparation, PorBhai makes studying easier, smarter, and a little less painful. &#128514;</p>
+            <div class="story reverse fade">
+                <video controls autoplay muted loop playsinline><source src="Study_2.mp4" type="video/mp4"></video>
+                <div>
+                    <h3>Not sure what to study, or where to start?</h3>
+                    <p>From confusing topics to exam preparation, PorBhai is here to make studying a little easier and a little less painful.</p>
                 </div>
             </div>
         </section>
 
-        <section class="banner reveal">
-            <h2>No need to worry &#128526;</h2>
-            <p>Study smarter. Stress less. Score better. Your exams may be coming&hellip; but you&rsquo;ve got PorBhai! &#128640;</p>
-            <a class="btn btn-primary" href="#classes">Start learning today</a>
+        <section class="closing fade">
+            <p>Study smarter. Stress less. Score better.</p>
+            <a class="btn solid" href="#classes">Start with your class</a>
         </section>
 
-        <section class="section" style="padding-top:0">
-            <div class="story reveal">
-                <div class="panel">
-                    <h3>About the builder</h3>
-                    <p>PorBhai is designed, built and maintained by <b>Anni</b>, a full stack programmer and software engineer intern, with one simple idea in mind: technology should make learning easier for every student.</p>
-                </div>
-                <div class="panel">
-                    <h3>Our goal</h3>
-                    <p>Make studying feel clear, organised and less stressful &mdash; so students can plan their time, revise with confidence and build habits that last for years.</p>
-                </div>
-            </div>
+        <section class="block maker fade">
+            <h3>About the maker</h3>
+            <p>PorBhai is designed, built and maintained by Anni, a full stack programmer and software engineer intern, with one simple idea: technology should make learning easier for every student.</p>
         </section>
     </div>
 </main>
 
 <footer class="site-footer">
-    <div class="social-links">
-        <a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+    <p>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a> &middot;
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a> &middot;
         <a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a>
-    </div>
-    <small>&copy; PorBhai &mdash; made with care for every student.</small>
+    </p>
+    <small>&copy; PorBhai</small>
 </footer>
 <script src="home.js"></script>
 </body>
