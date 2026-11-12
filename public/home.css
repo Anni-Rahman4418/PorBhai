@@ -79,7 +79,52 @@ body { background: var(--paper); color: var(--ink); }
 .fade-in { animation: appear .9s ease both; }
 @keyframes appear { from { opacity: 0; } to { opacity: 1; } }
 
-@media (max-width: 44rem) {
-  .story, .story.reverse { grid-template-columns: 1fr; }
+/* ---------- Responsive ---------- */
+img, video { max-width: 100%; }
+body { overflow-x: hidden; }
+
+/* Hover lift only where a real hover exists (not on touch screens) */
+@media (hover: none) {
+  .tile.in:hover { transform: none; box-shadow: none; border-left-color: var(--blue); }
+}
+
+/* Large screens */
+@media (min-width: 90rem) {
+  html { font-size: 112.5%; }
+  .wrap, .photo, .navbar .inner { max-width: 72rem; }
+}
+
+/* Tablets and below */
+@media (max-width: 52rem) {
+  .story, .story.reverse { grid-template-columns: 1fr; gap: 1rem; }
   .story.reverse video { order: 0; }
+  .block { padding-top: 2.8rem; }
+  .points { gap: 1.5rem; }
+}
+
+/* Phones */
+@media (max-width: 40rem) {
+  body { font-size: 1rem; }
+  .navbar .inner { padding: .4rem 1rem; justify-content: center; }
+  .navbar nav ul { justify-content: center; }
+  .navbar li a { padding: .6rem .8rem; }
+  .photo, .wrap { padding-left: 1rem; padding-right: 1rem; }
+  .photo { margin-top: .75rem; }
+  .photo img { height: 12rem; }
+  .welcome { padding-top: 1.6rem; }
+  .intro { font-size: 1.05rem; }
+  .buttons .btn { flex: 1 1 100%; text-align: center; padding: .85rem 1rem; }
+  .tiles { grid-template-columns: repeat(2, 1fr); gap: .7rem; }
+  .tile { padding: .85rem .9rem; }
+  .tile strong { font-size: 1.3rem; }
+  .points { grid-template-columns: 1fr; }
+  .closing { padding: 1.6rem 1rem; }
+  .closing p { font-size: 1.25rem; }
+  .closing .btn { display: block; }
+}
+
+/* Very small phones */
+@media (max-width: 22rem) {
+  .navbar li a { padding: .5rem .55rem; font-size: .95rem; }
+  .welcome h1 { font-size: 1.9rem; }
 }
