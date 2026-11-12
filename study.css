@@ -1,0 +1,62 @@
+.study-main { max-width: 76rem; }
+.study-heading { margin: 0 auto 1.5rem; text-align: center; max-width: 42rem; }
+.study-eyebrow { margin: 0 0 .4rem; color: #0f9d6b; font-size: .75rem; font-weight: 800; letter-spacing: .12em; }
+.study-heading h1 { margin: 0; color: var(--ink); font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; }
+.study-heading > p:last-child { margin: .75rem 0 0; color: var(--muted); }
+.study-layout { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(18rem, .9fr); gap: 1rem; align-items: stretch; }
+.reader-panel, .tutor-panel { min-width: 0; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: .9rem; box-shadow: 0 8px 24px rgba(27, 36, 55, .06); }
+.reader-panel { display: flex; flex-direction: column; min-height: 38rem; }
+.upload-panel { display: flex; flex: 1; min-height: 32rem; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; }
+.upload-icon { display: grid; width: 4rem; height: 4rem; place-items: center; border-radius: 1rem; background: #e8f7f1; font-size: 2rem; }
+.upload-panel h2 { margin: 1rem 0 .25rem; font-size: 1.35rem; }
+.upload-panel p { max-width: 27rem; margin: .3rem 0 1rem; color: var(--muted); font-size: .9rem; }
+#pdfFile, #replacePdf { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+.upload-button, .replace-button { display: inline-flex; align-items: center; justify-content: center; padding: .6rem 1rem; border: 0; border-radius: .5rem; background: var(--brand); color: #fff; font-weight: 700; cursor: pointer; }
+.upload-button:hover, .ask-button:hover { background: var(--brand-dark); }
+.upload-panel .upload-note { margin: .7rem 0 0; font-size: .78rem; }
+.reader-toolbar { display: flex; align-items: center; gap: .75rem; min-height: 3.75rem; padding: .55rem .8rem; border-bottom: 1px solid var(--line); }
+.file-label { display: flex; align-items: center; gap: .5rem; flex: 1; min-width: 0; font-size: .87rem; font-weight: 650; }
+.file-label > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pdf-badge { padding: .15rem .35rem; border-radius: .25rem; background: #ffefed; color: #b42318; font-size: .68rem; font-weight: 800; }
+.page-controls { display: flex; align-items: center; gap: .5rem; font-size: .82rem; white-space: nowrap; }
+.icon-button { display: grid; width: 2rem; height: 2rem; place-items: center; border: 1px solid var(--line); border-radius: .4rem; background: #fff; color: var(--ink); font-size: 1rem; cursor: pointer; }
+.icon-button:disabled { opacity: .4; cursor: not-allowed; }
+.replace-button { padding: .4rem .55rem; background: #eff4ff; color: var(--brand-dark); font-size: .78rem; white-space: nowrap; }
+.reader-status { padding: .55rem .9rem; color: var(--muted); font-size: .8rem; }
+.reader-status.error { color: #b42318; }
+.pdf-stage { flex: 1; min-height: 28rem; overflow: auto; padding: 1rem; background: #edf1f7; }
+.pdf-page { position: relative; width: max-content; max-width: 100%; margin: 0 auto; background: #fff; box-shadow: 0 2px 12px rgba(27, 36, 55, .16); }
+#pdfCanvas { display: block; max-width: 100%; height: auto; }
+.text-layer { position: absolute; inset: 0; overflow: hidden; line-height: 1; opacity: .25; }
+.text-layer span, .text-layer br { position: absolute; color: transparent; white-space: pre; transform-origin: 0 0; cursor: text; }
+.text-layer ::selection { background: rgba(37, 99, 235, .35); }
+.reader-hint { margin: 0; padding: .6rem .9rem; color: var(--muted); font-size: .78rem; }
+.tutor-panel { display: flex; flex-direction: column; min-height: 38rem; }
+.tutor-heading { display: flex; align-items: center; gap: .7rem; padding: 1rem; border-bottom: 1px solid var(--line); }
+.tutor-avatar { display: grid; width: 2.5rem; height: 2.5rem; flex: none; place-items: center; border-radius: .75rem; background: #eff4ff; font-size: 1.2rem; }
+.tutor-heading h2 { margin: 0; font-size: 1rem; }
+.tutor-heading p { margin: .1rem 0 0; color: var(--muted); font-size: .78rem; }
+.chat-messages { display: flex; flex: 1; min-height: 17rem; flex-direction: column; gap: .75rem; overflow-y: auto; padding: 1rem; }
+.chat-message { max-width: 95%; padding: .7rem .8rem; border-radius: .75rem; font-size: .88rem; line-height: 1.5; overflow-wrap: anywhere; }
+.chat-message p { margin: 0; white-space: pre-wrap; }
+.assistant-message { align-self: flex-start; background: #f1f5fb; }
+.user-message { align-self: flex-end; background: #eaf1ff; }
+.chat-form { padding: .9rem 1rem 1rem; border-top: 1px solid var(--line); }
+.chat-form label { display: block; margin-bottom: .35rem; font-size: .8rem; font-weight: 700; }
+.chat-form textarea { min-height: 5.2rem; font-size: .88rem; }
+.ask-button { display: flex; width: 100%; align-items: center; justify-content: space-between; margin-top: .55rem; padding: .6rem .8rem; border: 0; border-radius: .5rem; background: var(--brand); color: #fff; font: inherit; font-size: .9rem; font-weight: 700; cursor: pointer; }
+.ask-button:disabled { opacity: .65; cursor: wait; }
+.chat-note { margin: .55rem 0 0; color: var(--muted); font-size: .72rem; }
+
+@media (max-width: 52rem) {
+    .study-layout { grid-template-columns: 1fr; }
+    .reader-panel { min-height: 34rem; }
+    .tutor-panel { min-height: 31rem; }
+}
+@media (max-width: 36rem) {
+    .reader-toolbar { flex-wrap: wrap; }
+    .file-label { flex-basis: calc(100% - 1rem); }
+    .page-controls { margin-right: auto; }
+    .upload-panel { min-height: 25rem; padding: 1.25rem; }
+    .pdf-stage { padding: .5rem; }
+}

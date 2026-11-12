@@ -58,6 +58,19 @@ or
 
 The AI should focus on **helping students understand concepts**, rather than simply giving answers.
 
+### 📄 AI PDF Study Room
+
+The Study with AI page lets students open a textbook PDF or choose one from their device. They can click or select text for a contextual word explanation, or ask the tutor questions about the current page. PDFs are read in the browser; only the current page's extracted text and the student's question are sent to the AI service. Scanned/image-only PDFs are not supported.
+
+To run the site with the AI tutor enabled, use Node.js 18 or newer and an OpenAI API key:
+
+```powershell
+$env:OPENAI_API_KEY = "your-api-key"
+node server.js
+```
+
+Then open `http://localhost:3000`. Never put the API key in browser code or commit it to the repository. Without the key, the site still runs, but the AI endpoint returns a setup message. Hosting this on a static-only service requires deploying an equivalent secure `/api/tutor` backend; do not expose the API key in a static frontend.
+
 ---
 
 ### 📝 Quizzes & Practice
